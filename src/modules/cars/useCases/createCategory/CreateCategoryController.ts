@@ -10,7 +10,7 @@ class CreateCategoryController {
     try {
       this.createCategoryUseCase.execute({ name, description });
     } catch (err) {
-      res.status(400).json({ error: err.message });
+      res.status(500).json({ error: err.message });
     }
 
     return res.status(201).send();
