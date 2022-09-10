@@ -1,4 +1,4 @@
-import { ICreateUserDTO } from "../dtos/ICreateUserDTO"
+import { ICreateUserDTO } from "../dtos/ICreateUserDTO";
 import { User } from "../entities/User";
 
 interface IUserRepository {
@@ -7,4 +7,4 @@ interface IUserRepository {
   findById(id: string): Promise<User | undefined>;
 }
 
-export { IUserRepository }
+export { IUserRepository };

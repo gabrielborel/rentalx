@@ -9,11 +9,11 @@ class CategoriesRepository implements ICategoriesRepository {
   private repository: Repository<Category>;
 
   constructor() {
-    this.repository = getRepository(Category)
+    this.repository = getRepository(Category);
   }
 
   async create({ name, description }: ICreateCategoryDTO): Promise<void> {
-    const category = this.repository.create({ name, description })
+    const category = this.repository.create({ name, description });
 
     await this.repository.save(category);
   }
@@ -24,7 +24,7 @@ class CategoriesRepository implements ICategoriesRepository {
   }
 
   async findByName(name: string): Promise<Category | undefined> {
-    const category = await this.repository.findOne({ name })
+    const category = await this.repository.findOne({ name });
     return category;
   }
 }

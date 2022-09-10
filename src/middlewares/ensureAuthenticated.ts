@@ -1,5 +1,5 @@
 import { NextFunction, request, Request, Response } from "express";
-import { verify } from 'jsonwebtoken';
+import { verify } from "jsonwebtoken";
 import { AppError } from "../errors/AppError";
 import { UsersRepository } from "../modules/accounts/repositories/implementations/UsersRepository";
 
@@ -7,7 +7,11 @@ interface IPayload {
   sub: string;
 }
 
-export const ensureAuthenticated = async (req: Request, res: Response, next: NextFunction) => {
+export const ensureAuthenticated = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
@@ -15,9 +19,12 @@ export const ensureAuthenticated = async (req: Request, res: Response, next: Nex
   }
 
   const [, token] = authHeader.split(" ");
-  
+
   try {
-    const { sub: user_id } = verify(token, "6133fa31052080b27cedcade6fb17d49") as IPayload;
+    const { sub: user_id } = verify(
+      token,
+      "6133fa31052080b27cedcade6fb17d49"
+    ) as IPayload;
 
     const usersRepository = new UsersRepository();
     const user = usersRepository.findById(user_id);
@@ -27,11 +34,11 @@ export const ensureAuthenticated = async (req: Request, res: Response, next: Nex
     }
 
     request.user = {
-      id: user_id
+      id: user_id,
     };
 
     next();
   } catch {
     throw new AppError("Invalid token", 401);
   }
-}
+};

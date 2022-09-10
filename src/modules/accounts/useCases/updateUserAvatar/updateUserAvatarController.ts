@@ -15,4 +15,4 @@ class UpdateUserAvatarController {
   }
 }
 
-export { UpdateUserAvatarController }
+export { UpdateUserAvatarController };

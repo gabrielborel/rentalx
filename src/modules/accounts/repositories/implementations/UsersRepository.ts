@@ -9,13 +9,27 @@ class UsersRepository implements IUserRepository {
   constructor() {
     this.repository = getRepository(User);
   }
-  
-  async create({ name, driver_license, email, password, avatar, id }: ICreateUserDTO): Promise<void> {
-    const user = this.repository.create({ id, name, email, password, driver_license, avatar });
-    
+
+  async create({
+    name,
+    driver_license,
+    email,
+    password,
+    avatar,
+    id,
+  }: ICreateUserDTO): Promise<void> {
+    const user = this.repository.create({
+      id,
+      name,
+      email,
+      password,
+      driver_license,
+      avatar,
+    });
+
     await this.repository.save(user);
   }
-  
+
   async findByEmail(email: string): Promise<User | undefined> {
     const user = await this.repository.findOne({ email });
     return user;
@@ -27,4 +41,4 @@ class UsersRepository implements IUserRepository {
   }
 }
 
-export { UsersRepository }
+export { UsersRepository };
