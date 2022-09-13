@@ -1,4 +1,4 @@
-import { ICreateCarDTO } from "../dtos/ICreateCardDTO";
+import { ICreateCarDTO } from "../dtos/ICreateCarDTO";
 import { Car } from "../infra/typeorm/entities/Car";
 
 interface ICarsRepository {
@@ -9,6 +9,7 @@ interface ICarsRepository {
     category_id?: string,
     name?: string
   ): Promise<Car[]>;
+  findById(id: string): Promise<Car>;
 }
 
 export { ICarsRepository };
